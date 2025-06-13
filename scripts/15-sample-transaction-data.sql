@@ -1,0 +1,51 @@
+-- Data sampel untuk testing fitur transaksi dan inventory
+
+-- Pastikan ada user sampel terlebih dahulu
+-- (Data ini akan diisi setelah ada user yang register)
+
+-- Contoh data transaksi sampel (ganti UUID dengan user ID yang sebenarnya)
+-- INSERT INTO transactions (
+--     customer_id,
+--     collector_id,
+--     submission_id,
+--     type,
+--     weight,
+--     price_per_kg,
+--     total_amount,
+--     payment_status,
+--     notes,
+--     transaction_date
+-- ) VALUES 
+-- (
+--     'customer-uuid-here',
+--     'collector-uuid-here',
+--     NULL,
+--     'Kardus Tebal',
+--     25.5,
+--     2500,
+--     63750,
+--     'completed',
+--     'Transaksi pickup rutin mingguan',
+--     CURRENT_DATE - INTERVAL '7 days'
+-- ),
+-- (
+--     'customer-uuid-here',
+--     'collector-uuid-here',
+--     NULL,
+--     'Kardus Tipis',
+--     15.0,
+--     2000,
+--     30000,
+--     'completed',
+--     'Kardus dari kemasan produk elektronik',
+--     CURRENT_DATE - INTERVAL '3 days'
+-- );
+
+-- Refresh materialized view setelah ada data
+SELECT refresh_daily_summary();
+
+-- Test query untuk memastikan semua fungsi bekerja
+-- SELECT * FROM customer_transaction_stats LIMIT 5;
+-- SELECT * FROM collector_transaction_stats LIMIT 5;
+-- SELECT * FROM collector_inventory_stats LIMIT 5;
+-- SELECT * FROM daily_transaction_summary ORDER BY transaction_date DESC LIMIT 10;
